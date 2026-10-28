@@ -12,15 +12,15 @@ With it, an AI client such as Claude Code or Claude Desktop can:
 
 ## Install
 
-You need the Datanaught **Mac app** (the live link works through the Mac app's files) and macOS 15 or later.
+You need the Datanaught **Mac app** (the live link works through the Mac app's files), which runs on macOS 26 or later.
 In Terminal:
 
 ```sh
 mkdir -p ~/.datanaught && curl -fsSL https://github.com/Overtakersf1/datanaught-mcp/releases/latest/download/datanaught-sim-macos.tar.gz | tar xz -C ~/.datanaught
 ```
 
-Check it with `~/.datanaught/datanaught-sim --version`. Its version should match the app's
-(Datanaught ⋯ menu → Connect your AI). To update, run the same command again.
+Check it with `~/.datanaught/datanaught-sim --version`. To update, run the same command again; your AI
+will say so if the server is too old for your copy of the app.
 
 You can also download the file from the Releases page with a browser and unpack it into `~/.datanaught`.
 The server is signed and notarized by Apple (from 0.3.4), so macOS runs it without a warning.
@@ -33,20 +33,21 @@ claude mcp add --scope user datanaught -- ~/.datanaught/datanaught-sim mcp
 
 ## Connect Claude Desktop
 
-Settings → Developer → Edit Config, add this (use your own user name in the path), then restart Claude Desktop:
+Settings → Developer → Edit Config, add this as it is, then restart Claude Desktop:
 
 ```json
 {
   "mcpServers": {
     "datanaught": {
-      "command": "/Users/YOU/.datanaught/datanaught-sim",
-      "args": ["mcp"]
+      "command": "/bin/sh",
+      "args": ["-c", "exec \"$HOME/.datanaught/datanaught-sim\" mcp"]
     }
   }
 }
 ```
 
-The app's Connect your AI screen shows this with your path filled in, ready to copy.
+Claude Desktop doesn't expand `~`, so the shell finds the server in your home folder when it starts.
+The app's Connect your AI screen shows the same text, ready to copy.
 
 ## Try it
 
