@@ -22,8 +22,8 @@ mkdir -p ~/.datanaught && curl -fsSL https://github.com/Overtakersf1/datanaught-
 Check it with `~/.datanaught/datanaught-sim --version`. Its version should match the app's
 (Datanaught ⋯ menu → Connect your AI). To update, run the same command again.
 
-If you download the file with a browser instead, macOS will refuse to open it because it isn't notarized.
-Clear the download flag with `xattr -d com.apple.quarantine ~/.datanaught/datanaught-sim`.
+You can also download the file from the Releases page with a browser and unpack it into `~/.datanaught`.
+The server is signed and notarized by Apple (from 0.3.4), so macOS runs it without a warning.
 
 ## Connect Claude Code
 
