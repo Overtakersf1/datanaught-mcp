@@ -3,7 +3,7 @@
 Connect your own AI to Datanaught, the turn-based race to AGI from the Overtakers channel.
 This repository holds the ready-built MCP server for macOS. The game's source is private.
 
-With it, an AI client such as Claude Code or Claude Desktop can:
+With it, an AI client such as Claude Code, Claude Desktop or ChatGPT (through Codex) can:
 
 - **Advise you live.** It reads the game open in the Datanaught Mac app, reviews your Co-pilot's plan,
   simulates alternatives, scouts your rivals, and puts advice on your screen in a "Your AI" card.
@@ -48,6 +48,29 @@ Settings → Developer → Edit Config, add this as it is, then restart Claude D
 
 Claude Desktop doesn't expand `~`, so the shell finds the server in your home folder when it starts.
 The app's Connect your AI screen shows the same text, ready to copy.
+
+## Connect ChatGPT
+
+ChatGPT connects through Codex, which comes with the ChatGPT desktop app for Mac and also runs as a command-line
+tool. Both read `~/.codex/config.toml`. In Terminal, run this once, then quit and reopen the app:
+
+```sh
+mkdir -p ~/.codex && grep -qs 'mcp_servers.datanaught' ~/.codex/config.toml || cat >> ~/.codex/config.toml <<'EOF'
+
+[mcp_servers.datanaught]
+command = "/bin/sh"
+args = ["-c", "exec \"$HOME/.datanaught/datanaught-sim\" mcp"]
+tool_timeout_sec = 600
+EOF
+```
+
+In the app, choose Codex and start a new chat, then allow the `datanaught` tools when asked. If you already use the
+Codex command-line tool, `codex mcp add datanaught -- ~/.datanaught/datanaught-sim mcp` also works, without the longer
+timeout that big what-ifs need.
+
+ChatGPT's Chat mode only connects to MCP servers on the internet, so it can't start this one on your Mac. OpenAI's
+[Secure MCP Tunnel](https://developers.openai.com/api/docs/guides/secure-mcp-tunnels) can bridge the gap, but it needs an
+OpenAI Platform account and a workspace that allows custom servers, and Codex is much simpler.
 
 ## Try it
 
