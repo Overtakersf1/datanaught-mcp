@@ -81,25 +81,33 @@ Open a game in the Datanaught Mac app, then ask your AI:
 Other ideas: *"Scout my rivals."* *"Review my last turn."* *"Compare all four postures over 20 trials."*
 Or, without the app: *"Start a Datanaught game against the Monopolist and play my first five turns, explaining each move."*
 
-## Oversight board
+## Your board
 
-A live web page beside the game: win odds from games played forward in the background, the race with projections, the
-map with threats and strike options, the Co-pilot's plan in each posture, a plan lab for testing your own turn, and
-everything your AI looked at. Ask your AI to *"open the oversight board"*, or run it yourself:
+A board is a web page beside the game that shows it the way you want to see it: win odds from games played
+forward, the race with projections, the map (in 3D with a win-rate column on every pick during the draft), the
+Co-pilot's plan in each posture, and a plan lab for testing your own turn. It is also where your AI shows its work
+and asks you to make the big calls. Ask your AI to *"open my board"*, or run it yourself:
 
 ```sh
 ~/.datanaught/datanaught-sim board          # follows the game open in the app
 ~/.datanaught/datanaught-sim board --demo   # plays a recorded game, no app needed
+~/.datanaught/datanaught-sim board --new mine   # copy the starter board to ~/.datanaught/boards/mine to make your own
 ```
 
-It opens http://127.0.0.1:4747/ in your browser and is reachable only from your own Mac. The simulations use spare
-processor time; the page has a Pause button.
+It opens http://127.0.0.1:4747/ in your browser and is reachable only from your own Mac.
+
+**A board is yours to change.** It is a folder of plain HTML, CSS and JavaScript, not part of this server: edit a
+file and reload. Its `README.md` explains every call a board can make. Point your coding AI at the folder and tell
+it what you want to see. Every board gets the same information (the game from your seat, what-ifs on fresh dice),
+so the edge is in what yours makes of it.
 
 ## Tools
 
 | Tool | What it does |
 |---|---|
-| `open_board` | Open the oversight board in the browser |
+| `open_board` | Open your board in the browser |
+| `board_post`, `board_remove` | Put a panel of the AI's own on your board (text, a table, a chart), or take one down |
+| `board_ask`, `board_inbox` | Ask you to make a call on the board and wait for your answer; read your answers and notes |
 | `live_status` | Find the game open in the app: round, whose turn, your advice and what the player did with it |
 | `live_state`, `live_copilot`, `live_actions` | The board, the Co-pilot's plan as the player sees it, and every legal move |
 | `live_rivals`, `live_review_turn`, `live_game_analysis` | Rival scouting, a review of the last turn, and the game so far |
