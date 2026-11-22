@@ -81,10 +81,25 @@ Open a game in the Datanaught Mac app, then ask your AI:
 Other ideas: *"Scout my rivals."* *"Review my last turn."* *"Compare all four postures over 20 trials."*
 Or, without the app: *"Start a Datanaught game against the Monopolist and play my first five turns, explaining each move."*
 
+## Oversight board
+
+A live web page beside the game: win odds from games played forward in the background, the race with projections, the
+map with threats and strike options, the Co-pilot's plan in each posture, a plan lab for testing your own turn, and
+everything your AI looked at. Ask your AI to *"open the oversight board"*, or run it yourself:
+
+```sh
+~/.datanaught/datanaught-sim board          # follows the game open in the app
+~/.datanaught/datanaught-sim board --demo   # plays a recorded game, no app needed
+```
+
+It opens http://127.0.0.1:4747/ in your browser and is reachable only from your own Mac. The simulations use spare
+processor time; the page has a Pause button.
+
 ## Tools
 
 | Tool | What it does |
 |---|---|
+| `open_board` | Open the oversight board in the browser |
 | `live_status` | Find the game open in the app: round, whose turn, your advice and what the player did with it |
 | `live_state`, `live_copilot`, `live_actions` | The board, the Co-pilot's plan as the player sees it, and every legal move |
 | `live_rivals`, `live_review_turn`, `live_game_analysis` | Rival scouting, a review of the last turn, and the game so far |
