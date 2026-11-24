@@ -7,7 +7,8 @@ With it, an AI client such as Claude Code, Claude Desktop or ChatGPT (through Co
 
 - **Advise you live.** It reads the game open in the Datanaught Mac app, reviews your Co-pilot's plan,
   simulates alternatives, scouts your rivals, and puts advice on your screen in a "Your AI" card.
-  You decide what to play. It never moves for you, and it can't see the dice or anything a rival hides.
+  You decide what to play, unless you turn on autopilot (Connect your AI → Let your AI play) and let it play your
+  seat. It can't see the dice or anything a rival hides.
 - **Play its own game** headless against the built-in rivals.
 
 ## Install
@@ -109,10 +110,11 @@ so the edge is in what yours makes of it.
 | `board_post`, `board_remove` | Put a panel of the AI's own on your board (text, a table, a chart), or take one down |
 | `board_ask`, `board_inbox` | Ask you to make a call on the board and wait for your answer; read your answers and notes |
 | `live_status` | Find the game open in the app: round, whose turn, your advice and what the player did with it |
+| `live_wait_for_turn` | Wait until it's your AI's move (on autopilot, when the app is waiting for advice), then return the status |
 | `live_state`, `live_copilot`, `live_actions` | The board, the Co-pilot's plan as the player sees it, and every legal move |
 | `live_rivals`, `live_review_turn`, `live_game_analysis` | Rival scouting, a review of the last turn, and the game so far |
 | `live_whatif` | Simulate plans to the end of the game against the rivals, on fresh dice |
-| `send_advice`, `clear_advice` | Put advice on the player's screen, or take it down |
+| `send_advice`, `clear_advice` | Put advice on the player's screen (`headline`, `note`, `steps`; any other field is refused), or take it down |
 | `new_game`, `get_state`, `get_forecast`, `list_actions`, `take_action`, `end_turn`, `get_rules`, `save_game` | Play a headless game |
 
 ## Troubleshooting
